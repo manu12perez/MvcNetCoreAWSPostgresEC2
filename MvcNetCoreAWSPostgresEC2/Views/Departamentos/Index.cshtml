@@ -13,7 +13,7 @@
         Create New
     </a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -47,6 +47,12 @@
                     class="btn btn-info">
                     Details
                 </a>
+                <a asp-action="Edit" asp-route-id="@item.IdDepartamento" class="btn btn-warning">Editar</a>
+                <form asp-action="Delete" asp-route-id="@item.IdDepartamento" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este departamento?');">
+                        Eliminar
+                    </button>
+                </form>
             </td>
         </tr>
 }

@@ -37,5 +37,27 @@ namespace MvcNetCoreAWSPostgresEC2.Controllers
             await this.repo.InsertDepartamentoAsync(dept.IdDepartamento, dept.Nombre, dept.Localidad);
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            Departamento dept = await this.repo.FindDepartamentoAsync(id);
+            return View(dept);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Departamento dept)
+        {
+            await this.repo.UpdateDepartamentoAsync(dept.IdDepartamento, dept.Nombre, dept.Localidad);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.repo.DeleteDepartamentoAsync(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

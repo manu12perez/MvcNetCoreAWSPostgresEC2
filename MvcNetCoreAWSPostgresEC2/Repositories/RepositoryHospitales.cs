@@ -33,5 +33,27 @@ namespace MvcNetCoreAWSPostgresEC2.Repositories
             await this.context.Departamentos.AddAsync(departamento);
             await this.context.SaveChangesAsync();
         }
+
+        public async Task UpdateDepartamentoAsync(int id, string nombre, string localidad)
+        {
+            Departamento dept = await this.FindDepartamentoAsync(id);
+            if (dept != null)
+            {
+                dept.Nombre = nombre;
+                dept.Localidad = localidad;
+                await this.context.SaveChangesAsync();
+            }
+        }
+
+        public async Task DeleteDepartamentoAsync(int id)
+        {
+            Departamento dept = await this.FindDepartamentoAsync(id);
+            if (dept != null)
+            {
+                this.context.Departamentos.Remove(dept);
+                await this.context.SaveChangesAsync();
+            }
+        }
+
     }
 }
